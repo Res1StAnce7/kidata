@@ -1,0 +1,316 @@
+@use "base";
+@use "footer";
+
+$page-horizontal-margin: 22%;
+
+// flexbox to handle body content sizing:
+.page-container {
+  display: flex;
+  flex-flow: column;
+
+  min-height: 100vh;
+}
+
+// FIXME: unify style; some partials use nesting:
+.page-container > .header {
+  flex: 0 1 auto;
+}
+
+.page-container > .page-content {
+  flex: 1 1 auto;
+  margin: 0 $page-horizontal-margin;
+}
+
+.page-container > .footer {
+  flex: 0 1 footer.$footer-height;
+}
+
+.split-container {
+  display: flex;
+  flex-flow: row;
+  
+  > * {
+    flex: 1;
+  }
+
+  &.hero {
+    align-items: center;
+  }
+}
+
+// generally only for .split-container:
+.right-align {
+  * { text-align: right; }
+}
+
+.title {
+  font-size: 40px;
+  color: base.$color-primary;
+}
+
+.home {
+  @include base.horizontally-center;
+}
+
+.home .hero {
+  .image-container {
+    display: flex;
+    
+    justify-items: center;
+    
+    > img {
+      float: right;
+      width: 100%;
+    }
+  }
+
+  .quickstart {
+    box-sizing: border-box;
+    margin-left: 20px;
+    
+    * { text-align: right; } 
+
+    .hero-nav {
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        @include base.primary-box;
+        @include base.rounding;
+
+        float: right;
+        padding: 10px 15px;
+        
+        margin-left: 10px;
+
+        // animation:
+        transition-duration: 0.1s;
+      }
+
+      li:hover {
+        background-color: white;
+        color: base.$color-primary;
+      }
+    }
+  }
+}
+.content-card {
+  text-align: left;
+  position: relative;
+  background: base.$color-primary;
+  border-radius: 15px;
+  font-size: 32px;
+  font-weight: bold;
+  box-shadow: 0 0 5px black;
+  line-height: 80px;
+  top: 50px;
+  text-indent: 2em;
+  padding-left: 20px;
+
+}
+.lesson-card {
+  text-align: left;
+  position: relative;
+
+  background: base.$color-primary;
+  border-radius: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0 0 5px black;
+  line-height: 80px;
+}
+
+.home .welcome {
+  margin-top: 80px;
+}
+
+.lessons {
+  .lesson-menu {
+    border-radius: 15px;
+    box-shadow: 0 0 5px lightblue;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        background-color: base.$color-primary;
+        border-radius: 5px;
+        
+        padding: 5px;
+        margin-bottom: 5px;
+
+        // animations:
+        transition-duration: 0.2s;
+        
+        // tiers:
+        &.success {
+          background-color: limegreen;
+        }
+
+        &.warning {
+          background-color: gold;
+        }
+
+        &.danger {
+          background-color: tomato;
+        }
+        
+        &:hover {
+          // rgbA!? why!?!?  
+          background-color: rgba(white, 80%);
+        }
+      }
+    }
+  }
+
+  .card-list {
+    list-style: none;
+
+    columns: 2;
+    column-fill: balance;
+    
+    gap: 5px;
+    
+    .card {
+      display: inline-block;
+      
+      // why does this resolve the gap issue?:
+      column-width: 400px;
+      height: 250px;
+      text-align: center;
+      background-color: base.$color-primary;
+      border-radius: 5px;
+      
+      padding: 5px;
+      
+      // animations:
+      transition-duration: 0.2s;
+
+      img {
+        
+        width: 95%;
+        height: 200px;
+
+        border-radius: inherit;
+      }
+
+      &:hover {
+        background-color: base.$color-secondary;
+      } 
+    }
+  }
+}
+.contact-card{
+  background-color: base.$color-primary;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 120%;
+}
+
+#lesson-back{
+  @include base.rounding;
+
+  background-color: #FABB51;
+  padding: 2%;
+}
+.lesson-page {
+  .status {
+    @include base.horizontally-center;
+
+    * { 
+      text-align: center;
+    }
+  }
+
+  .markdown img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li:hover {
+    background-color: rgba(white, 30%);
+  }
+
+  // why was this rule removed from the fonts partial?
+  h1, h2 {
+    margin-bottom: 0;
+  }
+  
+  .choice {
+    padding: 5px;
+
+    border-radius: 5px;
+    margin-bottom: 5px;
+
+    // animation:
+    transition-duration: 0.2s;
+
+    button {
+      cursor: pointer;
+
+      width: 100%;
+      text-align: left;
+      
+      background-color: transparent;
+      border: none;
+
+      // pull success/danger color from parent:
+      color: inherit;
+    }
+
+    &.success {
+      background-color: rgba(green, 50%);
+      color: greenyellow;
+    }
+
+    &.danger {
+      background-color: rgba(crimson, 50%);
+      color: crimson;
+    }
+  }
+}
+
+.error-page {
+  @include base.horizontally-center;
+
+  * {
+    width: 100%;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 48px;
+    color: base.$color-primary;
+  }
+
+  .to-home {
+    @include base.primary-box;
+    @include base.rounding;
+    
+    padding: 10px 15px;
+    margin: 10px 0;
+    
+    width: auto;
+
+    // animation:
+    transition-duration: 0.1s;
+  }
+
+  .to-home:hover {
+    background-color: white;
+    
+    * { color: base.$color-primary }
+  }
+}

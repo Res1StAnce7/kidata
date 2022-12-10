@@ -1,0 +1,56 @@
+$color-primary: #FABB51;
+$text-color-primary: black;
+
+$color-secondary: #58D68D;
+$text-color-secondary: $text-color-primary;
+
+$color-background: #34d6F9;
+
+$base-shadow-properties: rgba(0, 0, 0, 0.8) 0px 0px 4px;
+
+// what kinds of mixins would be useful?:
+@mixin rounding {
+  border-radius: 12px;
+}
+
+@mixin shadow {
+  box-shadow: $base-shadow-properties
+}
+
+@mixin primary-box {
+  @include shadow;
+
+  color: $text-color-primary;
+  background-color: $color-primary;
+}
+
+@mixin secondary-box {
+  @include shadow;
+
+  color: $text-color-secondary;
+  background-color: $color-secondary;
+}
+
+@mixin vertically-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin horizontally-center {
+  display: flex;
+
+  flex-flow: column;
+  justify-content: center;
+}
+
+body {
+  background-color: $color-background;
+  /* gradient styling: */
+  background-image: linear-gradient($color-background, darken($color-background, 5%));
+  background-attachment: fixed;
+}
+
+a, a:link, a:visited, a:focus, a:hover, a:active {
+  text-decoration: none;
+  color: $text-color-primary;
+}

@@ -1,0 +1,30 @@
+@use "base";
+
+$footer-height: 60px;
+
+.footer {
+  @include base.primary-box;
+  @include base.vertically-center;
+
+  height: 100%;
+  
+  padding: 0 25%;
+}
+
+.footer .copyright {
+  opacity: 50%;
+}
+
+.footer ul {
+  @include base.vertically-center;
+  
+  // align to right:
+  margin-left: auto;
+  margin-right: 0;
+  
+  list-style-type: none;
+
+  li {
+    padding-left: 15px;
+  }
+}
